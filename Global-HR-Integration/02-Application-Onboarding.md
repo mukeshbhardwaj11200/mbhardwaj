@@ -13,7 +13,7 @@ To ingest the flat-file HR data, the application was configured in SailPoint Ide
    * **Parsing Type:** `Delimited`
    * **Delimiter:** `,` (Comma)
    * **File Has Column Headers:** Checked
-   * **Filter Empty Records:** Checked (This prevents stray blank rows at the bottom of the CSV from throwing exceptions during the aggregation task).
+
 4. Click **Save** to lock in the baseline connector settings.
 
 ## 2. Schema Discovery
