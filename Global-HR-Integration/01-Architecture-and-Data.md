@@ -28,33 +28,33 @@ Below is the sample HR dataset used to validate the SailPoint integration. It co
 
 ```csv
 employeeId,firstName,lastName,email,department,jobTitle,managerId,location,costCenter,status
-E001,Sarah,Connor,sarah.connor@acme.com,Executive,Chief Executive Officer,,New York,CC-100,Active
-E002,John,Smith,john.smith@acme.com,IT,IT Director,E001,New York,CC-200,Active
-E003,Emily,Chen,emily.chen@acme.com,Human Resources,HR Director,E001,London,CC-300,Active
-E004,David,Wallace,david.wallace@acme.com,Finance,Finance Director,E001,New York,CC-400,Active
-E005,Jan,Levinson,jan.levinson@acme.com,Sales,VP of Sales,E001,Chicago,CC-500,Active
-E006,Michael,Scott,michael.scott@acme.com,IT,Systems Engineer,E002,New York,CC-200,Active
-E007,Jim,Halpert,jim.halpert@acme.com,IT,Helpdesk Analyst,E002,New York,CC-200,Inactive
-E008,Dwight,Schrute,dwight.schrute@acme.com,IT,Security Analyst,E002,New York,CC-200,Active
-E009,Angela,Martin,angela.martin@acme.com,IT,Network Administrator,E002,London,CC-200,Active
-E010,Kevin,Malone,kevin.malone@acme.com,IT,Database Administrator,E002,Chicago,CC-200,Active
-E011,Oscar,Martinez,oscar.martinez@acme.com,IT,Cloud Architect,E002,New York,CC-200,Active
-E012,Pam,Beesly,pam.beesly@acme.com,Human Resources,HR Generalist,E003,London,CC-300,Active
-E013,Toby,Flenderson,toby.flenderson@acme.com,Human Resources,HR Representative,E003,New York,CC-300,Active
-E014,Kelly,Kapoor,kelly.kapoor@acme.com,Human Resources,Talent Acquisition,E003,London,CC-300,Active
-E015,Holly,Flax,holly.flax@acme.com,Human Resources,HR Manager,E003,Chicago,CC-300,Active
-E016,Stanley,Hudson,stanley.hudson@acme.com,Finance,Senior Accountant,E004,New York,CC-400,Active
-E017,Phyllis,Vance,phyllis.vance@acme.com,Finance,Payroll Specialist,E004,New York,CC-400,Active
-E018,Meredith,Palmer,meredith.palmer@acme.com,Finance,Procurement Analyst,E004,London,CC-400,Active
-E019,Creed,Bratton,creed.bratton@acme.com,Finance,Quality Assurance,E004,Chicago,CC-400,Inactive
-E020,Ryan,Howard,ryan.howard@acme.com,Finance,Financial Analyst,E004,New York,CC-400,Active
-E021,Andy,Bernard,andy.bernard@acme.com,Sales,Sales Manager,E005,Chicago,CC-500,Active
-E022,Erin,Hannon,erin.hannon@acme.com,Sales,Account Executive,E021,Chicago,CC-500,Active
-E023,Gabe,Lewis,gabe.lewis@acme.com,Sales,Sales Representative,E021,New York,CC-500,Active
-E024,Clark,Green,clark.green@acme.com,Sales,Junior Sales,E021,London,CC-500,Active
-E025,Pete,Miller,pete.miller@acme.com,Sales,Account Executive,E021,Chicago,CC-500,Inactive
-E026,Darryl,Philbin,darryl.philbin@acme.com,Sales,Logistics Coordinator,E005,New York,CC-500,Active
-E027,Roy,Anderson,roy.anderson@acme.com,Sales,Warehouse Associate,E005,New York,CC-500,Active
-E028,Val,Johnson,val.johnson@acme.com,Sales,Warehouse Manager,E005,London,CC-500,Active
-E029,Todd,Packer,todd.packer@acme.com,Sales,Traveling Sales,E005,Chicago,CC-500,Active
-E030,Jo,Bennett,jo.bennett@acme.com,Sales,Business Development,E005,New York,CC-500,Active
+E001,sArAh,CONNOR,sarah.connor@acme.com,Executive,Chief Executive Officer,,New York,,A
+E002,John,Smith,john.smith@acme.com,IT,IT Director,E001,New York,CC-200,active
+E003,Jane,Smith,jane.smith@acme.com,IT,Security Analyst,E002,New York,,Leave
+E004,Jacob,Smith,jacob.smith@acme.com,IT,Helpdesk Analyst,E002,London,CC-200,A
+E005,David,Wallace,david.wallace@acme.com,Finance,Finance Director,E001,New York,CC-400,Active
+E006,Dan,Wallace,dan.wallace@acme.com,Finance,Senior Accountant,E005,Chicago,,T
+E007,mIchaEl,scOtt,michael.scott@acme.com,Sales,VP of Sales,E001,New York,,ACTIVE
+E008,Jim,Halpert,jim.halpert@acme.com,Sales,Sales Representative,E007,New York,CC-500,Active
+E009,Dwight,Schrute,dwight.schrute@acme.com,Sales,Sales Representative,E007,New York,CC-500,Active
+E010,Angela,Martin,angela.martin@acme.com,Finance,Payroll Specialist,E005,New York,CC-400,A
+E011,Kevin,Malone,kevin.malone@acme.com,Finance,Accountant,E005,Chicago,CC-400,Leave
+E012,Oscar,Martinez,oscar.martinez@acme.com,Finance,Cloud Architect,E005,New York,CC-400,active
+E013,Pam,Beesly,pam.beesly@acme.com,Human Resources,HR Generalist,E001,New York,CC-300,A
+E014,Toby,Flenderson,toby.flenderson@acme.com,Human Resources,HR Representative,E001,New York,CC-300,Active
+E015,Kelly,Kapoor,kelly.kapoor@acme.com,Human Resources,Talent Acquisition,E001,London,CC-300,active
+E016,Stanley,Hudson,stanley.hudson@acme.com,Sales,Senior Sales,E007,New York,CC-500,Terminated
+E017,Phyllis,Vance,phyllis.vance@acme.com,Sales,Sales Representative,E007,New York,,active
+E018,Meredith,Palmer,meredith.palmer@acme.com,Supplier Relations,Procurement,E001,London,CC-700,A
+E019,Creed,Bratton,creed.bratton@acme.com,Quality Assurance,QA Analyst,E001,Chicago,CC-700,Unknown
+E020,Ryan,Howard,ryan.howard@acme.com,Executive,VP of Business,E001,New York,CC-100,active
+E021,Andy,Bernard,andy.bernard@acme.com,Sales,Sales Manager,E007,Chicago,CC-500,A
+E022,Erin,Hannon,erin.hannon@acme.com,Human Resources,Receptionist,E001,Chicago,CC-300,Leave
+E023,Gabe,Lewis,gabe.lewis@acme.com,IT,IT Coordinator,E002,Chicago,,A
+E024,Clark,Green,clark.green@acme.com,Customer Service,CS Representative,E015,London,CC-600,active
+E025,Pete,Miller,pete.miller@acme.com,Customer Service,CS Representative,E015,Chicago,CC-600,active
+E026,Darryl,Philbin,darryl.philbin@acme.com,Warehouse,Logistics Foreman,E001,New York,,A
+E027,Roy,Anderson,roy.anderson@acme.com,Warehouse,Warehouse Associate,E026,New York,CC-800,Terminated
+E028,Val,Johnson,val.johnson@acme.com,Warehouse,Warehouse Manager,E026,London,CC-800,active
+E029,Todd,Packer,todd.packer@acme.com,Sales,Traveling Sales,E007,Chicago,CC-500,T
+E030,Jo,Bennett,jo.bennett@acme.com,Executive,Chairman,,New York,,A
