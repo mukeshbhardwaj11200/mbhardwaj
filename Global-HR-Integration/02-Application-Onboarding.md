@@ -9,7 +9,7 @@ To ingest the flat-file HR data, the application was configured in SailPoint Ide
    * **Application Type:** `DelimitedFile`
    * **Authoritative Application:** Checked (This critical flag instructs IdentityIQ to use this feed to birth and govern Identity Cubes, rather than treating it as a downstream target).
 3. **Establish Transport & Parsing (Configuration > Settings Tab):**
-   * **File Path:** `D:\Ankur - Help in cracking interview\data\GlobalHR_Feed.csv`
+   * **File Path:** `VARIES FROM SYSTEM TO SYSTEM`
    * **Parsing Type:** `Delimited`
    * **Delimiter:** `,` (Comma)
    * **File Has Column Headers:** Checked
