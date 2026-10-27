@@ -2,9 +2,7 @@ Certification Sign-Off Approver Rule: Multi-Level Workflows
 
 1. Business Objective
 
-The Certification Sign-Off Approver Rule executes at the exact moment the primary reviewer clicks the "Sign Off" button.
-
-Its function is to evaluate the decisions the reviewer just made and determine if the campaign can be officially closed, or if it must be routed to a secondary executive or administrative group for a multi-level approval chain.
+The Certification Sign-Off Approver Rule executes at the exact moment the primary reviewer clicks the "Sign Off" button. Its function is to evaluate the decisions the reviewer just made and determine if the campaign can be officially closed, or if it must be routed to a secondary executive or administrative group for a multi-level approval chain.
 
 2. Architectural Context (The Interview Talking Track)
 
