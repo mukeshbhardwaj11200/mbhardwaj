@@ -2,11 +2,13 @@ Certification Pre-Delegation Rule: Automated Campaign Routing
 
 1. Business Objective
 
-The Certification Pre-Delegation Rule executes during the generation phase of an Access Review, after the campaign is built but before the notification emails are sent to the reviewers. Its primary function is to programmatically intercept the certification entities (the users being reviewed) and automatically redirect them to a different reviewer before the campaign goes live.
+The Certification Pre-Delegation Rule executes during the generation phase of an Access Review, after the campaign is built but before the notification emails are sent to the reviewers.
 
-2. Architectural Context
+Its primary function is to programmatically intercept the certification entities (the users being reviewed) and automatically redirect them to a different reviewer before the campaign goes live.
 
-When an interviewer asks about this rule, your focus should be on Exception Handling and Regulatory Routing.
+2. Architectural Context (The Interview Talking Track)
+
+If an interviewer asks you why and how you use this rule, your answer should focus on Exception Handling and Regulatory Routing.
 
 "Standard certifications rely on a rigid HR hierarchy, but enterprise organizations frequently have exceptions. If a manager owns a team that includes external contractors, or if the manager themselves goes on unexpected medical leave, a standard campaign will either violate policy by sending the review to the wrong person, or stall out in an inactive inbox. I use the Pre-Delegation rule to intercept the campaign generation, check the employee type or the certifier's status, and dynamically route those specific items to the Vendor Management Office or an Escalation Admin."
 
@@ -15,6 +17,7 @@ When an interviewer asks about this rule, your focus should be on Exception Hand
 Scenario A: The Contractor / Vendor Split
 
 The Problem: In Manager Campaigns, managers are often assigned to review external contractors (non-employees) who roll up to them in the HR hierarchy. However, corporate audit policy dictates that the Vendor Management Office (VMO) must review all contractor access, not the functional manager.
+
 The Solution: Intercept the entity, check the employeeType Identity attribute, and if it equals "Contractor", reassign the entire review for that specific user to the VMO workgroup.
 
 import sailpoint.object.CertificationEntity;
@@ -51,9 +54,10 @@ if (employeeType != null && employeeType.equalsIgnoreCase("Contractor")) {
 return null;
 
 
-Scenario B: The "Inactive Certifier" Fallback (Orphaned Campaign Prevention)
+Scenario B: The "Inactive Certifier" Fallback
 
 The Problem: A periodic campaign launches, but the manager who is supposed to review the team was terminated or put on long-term leave yesterday. If the campaign launches, it will sit in an inactive user's inbox, causing a compliance violation when the deadline is missed.
+
 The Solution: Check the status of the certifier (the manager). If the certifier is inactive, dynamically route the team's review to a central IAM Compliance Team so it doesn't get lost.
 
 import sailpoint.object.CertificationEntity;
