@@ -1,4 +1,4 @@
-vCertification Rule 1: Pre-Delegation
+Certification Rule 1: Pre-Delegation
 
 1. Rule Definition & Business Value
 
