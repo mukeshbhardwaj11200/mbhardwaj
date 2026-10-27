@@ -52,8 +52,7 @@ if (employeeType != null && employeeType.equalsIgnoreCase("Contractor")) {
 }
 
 // 5. Return null if it is a standard employee, leaving it with the original manager
-return null;
-
+return null;```
 
 ## Scenario B: The "Inactive Certifier" Fallback
 
