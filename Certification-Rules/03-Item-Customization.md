@@ -2,9 +2,7 @@ Certification Item Customization Rule: UI Enrichment
 
 1. Business Objective
 
-The Certification Item Customization Rule executes during the final stages of campaign generation, right before the items are rendered on the reviewer's dashboard.
-
-Its primary function is to alter the visual display of the certification line items. It does not change the underlying data in the database; it only changes what the reviewer sees on their screen.
+The Certification Item Customization Rule executes during the final stages of campaign generation, right before the items are rendered on the reviewer's dashboard. Its primary function is to alter the visual display of the certification line items. It does not change the underlying data in the database; it only changes what the reviewer sees on their screen.
 
 2. Architectural Context (The Interview Talking Track)
 
