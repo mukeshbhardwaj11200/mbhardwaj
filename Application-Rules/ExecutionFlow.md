@@ -98,8 +98,8 @@ graph TD
 
 Execution Order (Provisioning):
 
-Before Provisioning Rule: Executes right before the plan leaves SailPoint. Used to inject missing data (like a default password, or a calculated AD sAMAccountName) into the plan so it doesn't fail.
+1. Before Provisioning Rule: Executes right before the plan leaves SailPoint. Used to inject missing data (like a default password, or a calculated AD sAMAccountName) into the plan so it doesn't fail.
 
-Connector Rules (Provision Rule): The actual execution script (often used for JDBC, Web Services, or custom integrations) that takes the ProvisioningPlan and translates it into SQL inserts or API calls to physically create the account.
+2. Connector Rules (Provision Rule): The actual execution script (often used for JDBC, Web Services, or custom integrations) that takes the ProvisioningPlan and translates it into SQL inserts or API calls to physically create the account.
 
-After Provisioning Rule: Executes after the target system confirms the operation. Used to log success/failures, send emails, or trigger ITSM tickets (like ServiceNow) if manual intervention is still needed.
+3. After Provisioning Rule: Executes after the target system confirms the operation. Used to log success/failures, send emails, or trigger ITSM tickets (like ServiceNow) if manual intervention is still needed.
