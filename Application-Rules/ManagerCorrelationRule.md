@@ -14,10 +14,11 @@ If an interviewer asks about this, focus on Active Directory complexities and Ma
 
 ### Scenario A: Parsing Active Directory Manager DNs
 
-The Problem: Active Directory returns the manager attribute as CN=10045,OU=Managers,DC=Company,DC=com. SailPoint needs to link this to the Identity where employeeId == 10045.
+**The Problem:** Active Directory returns the manager attribute as CN=10045,OU=Managers,DC=Company,DC=com. SailPoint needs to link this to the Identity where employeeId == 10045.
 
-The Solution: Use Java string manipulation to parse the Distinguished Name, extract the value inside the CN=, and return it to SailPoint for correlation.
+**The Solution:** Use Java string manipulation to parse the Distinguished Name, extract the value inside the CN=, and return it to SailPoint for correlation.
 
+```java
 import java.util.Map;
 import java.util.HashMap;
 
