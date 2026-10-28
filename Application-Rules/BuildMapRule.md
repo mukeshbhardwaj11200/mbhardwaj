@@ -1,23 +1,24 @@
-Build Map Rule: Raw Data Transformation
+# Build Map Rule: Raw Data Transformation
 
-1. Business Objective
+## 1. Business Objective
 
 The Build Map Rule is specific to Delimited File (CSV) and JDBC connectors. It executes during aggregation, exactly at the moment a line of data is read from the file or database, but before SailPoint creates the ResourceObject. Its function is to map the raw string array into a usable Map of key-value pairs, allowing for on-the-fly data transformation.
 
-2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context (The Interview Talking Track)
 
 If an interviewer asks how you handle legacy CSV feeds with terrible formatting, this is your answer.
 
 "When dealing with legacy HR flat files or legacy databases, the raw data structure rarely matches what SailPoint needs. For instance, a CSV might have 'First Name' and 'Last Name' columns, but lack a 'Full Name' column. Or a status column might use cryptic codes like 'A' and 'T'. I use the Build Map Rule to parse the raw record, merge columns, translate cryptic codes into readable values, and build a clean Map. It's the first line of defense for data integrity before SailPoint even attempts to process the account."
 
-3. Enterprise Scenarios & BeanShell Implementation
+## 3. Enterprise Scenarios & BeanShell Implementation
 
-Scenario A: Combining Columns and Translating Status Codes
+### Scenario A: Combining Columns and Translating Status Codes
 
-The Problem: A delimited file application provides FName and LName, but you need DisplayName. Also, it provides account status as A (Active) or L (Leave), which SailPoint doesn't understand natively.
+**The Problem:** A delimited file application provides FName and LName, but you need DisplayName. Also, it provides account status as A (Active) or L (Leave), which SailPoint doesn't understand natively.
 
-The Solution: Intercept the raw record (a List of Strings) and the cols (the column headers). Build the map manually, format the display name, and translate the status to the standard IIQDisabled flag.
+**The Solution:** Intercept the raw record (a List of Strings) and the cols (the column headers). Build the map manually, format the display name, and translate the status to the standard IIQDisabled flag.
 
+```java
 import java.util.Map;
 import java.util.HashMap;
 
