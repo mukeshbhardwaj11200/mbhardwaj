@@ -1,22 +1,23 @@
-Certification Sign-Off Approver Rule: Multi-Level Workflows
+# Certification Sign-Off Approver Rule: Multi-Level Workflows
 
-1. Business Objective
+## 1. Business Objective
 
 The Certification Sign-Off Approver Rule executes at the exact moment the primary reviewer clicks the "Sign Off" button. Its function is to evaluate the decisions the reviewer just made and determine if the campaign can be officially closed, or if it must be routed to a secondary executive or administrative group for a multi-level approval chain.
 
-2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context (The Interview Talking Track)
 
 When an interviewer asks about this rule, your answer should demonstrate a deep understanding of Compliance, Segregation of Duties (SoD), and Risk Mitigation.
 
 "In highly regulated sectors like finance and ratings, a single line-manager's approval is necessary, but it is not sufficient for sensitive data. If a manager approves an employee's access to a SOX-critical financial database, audit compliance requires a secondary sign-off. I use the Sign-Off Approver Rule to intercept the campaign upon submission, scan the manager's decisions, and if any 'High Risk' items were approved, I dynamically route the campaign to the CISO or Risk Management team for a counter-signature before provisioning occurs."
 
-3. Enterprise Scenarios & BeanShell Implementation
+## 3. Enterprise Scenarios & BeanShell Implementation
 
-Scenario A: The SOX/High-Risk Secondary Escalation
+### Scenario A: The SOX/High-Risk Secondary Escalation
 
-The Problem: Managers are allowed to review their teams, but if they explicitly approve (retain) access to a SOX-critical entitlement, the IT Security team must review and agree with that decision.
-The Solution: Iterate through the CertificationItem objects. Check if the manager's action was "Approve". If it was, and the item contains the "SOX" keyword, return a map routing the campaign to the Security Workgroup.
+**The Problem:** Managers are allowed to review their teams, but if they explicitly approve (retain) access to a SOX-critical entitlement, the IT Security team must review and agree with that decision.
+**The Solution:** Iterate through the CertificationItem objects. Check if the manager's action was "Approve". If it was, and the item contains the "SOX" keyword, return a map routing the campaign to the Security Workgroup.
 
+```java
 import sailpoint.object.Certification;
 import sailpoint.object.CertificationItem;
 import sailpoint.object.CertificationAction;
@@ -67,13 +68,14 @@ if (requiresSecurityReview) {
 
 // 5. If no critical items were approved, return null to let the campaign close normally
 return null;
+```
 
+## Scenario B: Risk-Score Based Secondary Approval
 
-Scenario B: Risk-Score Based Secondary Approval
+**The Problem:** The company wants to implement dynamic risk-based reviews. If an employee has an inherently high Identity Risk Score (e.g., above 800), any approval of their access must be double-checked by the Risk Office.
+**The Solution:** Check the overall risk score of the target Identity. If it exceeds the threshold and the manager approved items, escalate it.
 
-The Problem: The company wants to implement dynamic risk-based reviews. If an employee has an inherently high Identity Risk Score (e.g., above 800), any approval of their access must be double-checked by the Risk Office.
-The Solution: Check the overall risk score of the target Identity. If it exceeds the threshold and the manager approved items, escalate it.
-
+```java
 import sailpoint.object.Certification;
 import sailpoint.object.Identity;
 import java.util.Map;
