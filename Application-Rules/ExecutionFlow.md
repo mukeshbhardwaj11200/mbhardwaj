@@ -14,32 +14,29 @@ During an account aggregation task, data flows from the raw target system into I
 
 ```mermaid
 graph TD
-    RawData[(Raw Target Data)] --> |1. Connector Reads Data| ConnectorRules
+    RawData[/"Raw Target Data"/] -->|1. Connector Reads Data| ConnectorRules
 
-    subgraph ConnectorRules [1. Connector Rules (Parsing)]
-        BM[Build Map Rule] --> MM[MergeMaps Rule]
-        MM --> MRO[Map To ResourceObject Rule]
+    subgraph ConnectorRules ["1. Connector Rules"]
+        BuildMapRule["Build Map Rule"] --> MergeMapsRule["MergeMaps Rule"]
+        MergeMapsRule --> MapToResourceObject["Map To ResourceObject Rule"]
     end
 
-    MRO --> |2. Raw Map Converted| SchemaRules
+    MapToResourceObject -->|2. Raw Map Converted| SchemaRules
 
-    subgraph SchemaRules [2. Schema Rules (Initial Scrub)]
-        SC[Account Customization Rule]
+    subgraph SchemaRules ["2. Schema Rules"]
+        AccountCustomization["Account Customization Rule"]
     end
 
-    SC --> |3. Clean ResourceObject| AggregationRules
+    AccountCustomization -->|3. Clean ResourceObject| AggregationRules
 
-    subgraph AggregationRules [3. Aggregation Rules (Linking & Processing)]
-        AC[App Customization Rule] --> CR[Correlation Rule]
-        CR -->|Identity Match Found| MCR[Manager Correlation Rule]
-        CR -->|No Match Found| Create[Creation Rule]
-        Create --> MCR
+    subgraph AggregationRules ["3. Aggregation Rules"]
+        AppCustomization["App Customization Rule"] --> CorrelationRule["Correlation Rule"]
+        CorrelationRule -->|Identity Match Found| ManagerCorrelation["Manager Correlation Rule"]
+        CorrelationRule -->|No Match Found| CreationRule["Creation Rule"]
+        CreationRule --> ManagerCorrelation
     end
 
-    MCR --> IdentityCube((Identity Cube Saved))
-    
-    classDef rules fill:#0a4b78,stroke:#fff,stroke-width:2px,color:#fff;
-    class BM,MM,MRO,SC,AC,CR,Create,MCR rules;
+    ManagerCorrelation --> IdentityCube(("Identity Cube Saved"))
 ```
 
 ## Execution Order (Aggregation):
@@ -72,30 +69,27 @@ When a user requests access, or an automated birthright role is assigned, Identi
 
 ```mermaid
 graph TD
-    Trigger((Access Request / Lifecycle Event)) --> |Generates| Plan[Provisioning Plan]
+    Trigger(("Access Request")) -->|Generates| ProvisioningPlan["Provisioning Plan"]
 
-    Plan --> |1. Plan Compiled| ProvRulesPre
+    ProvisioningPlan -->|1. Plan Compiled| ProvRulesPre
 
-    subgraph ProvRulesPre [1. Provisioning Rules (Pre-Flight)]
-        BP[Before Provisioning Rule]
+    subgraph ProvRulesPre ["1. Pre-Provisioning Rules"]
+        BeforeProvisioning["Before Provisioning Rule"]
     end
 
-    BP --> |2. Enriched Plan| ConnRules
+    BeforeProvisioning -->|2. Enriched Plan| ConnRules
 
-    subgraph ConnRules [2. Connector Rules (Execution)]
-        PR[Provision Rule]
+    subgraph ConnRules ["2. Connector Rules"]
+        ProvisionRule["Provision Rule"]
     end
 
-    PR --> |3. Updates Target| Target[(Target System)]
+    ProvisionRule -->|3. Updates Target| Target[/"Target System"/]
 
-    Target --> |4. Returns Result| ProvRulesPost
+    Target -->|4. Returns Result| ProvRulesPost
 
-    subgraph ProvRulesPost [3. Provisioning Rules (Post-Flight)]
-        AP[After Provisioning Rule]
+    subgraph ProvRulesPost ["3. Post-Provisioning Rules"]
+        AfterProvisioning["After Provisioning Rule"]
     end
-    
-    classDef rules fill:#0a4b78,stroke:#fff,stroke-width:2px,color:#fff;
-    class BP,PR,AP rules;
 ```
 
 Execution Order (Provisioning):
