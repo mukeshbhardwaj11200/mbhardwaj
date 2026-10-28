@@ -42,10 +42,12 @@ if (entity instanceof Identity) {
 
 // Return true to drop the item from the campaign, false to include it.
 return exclude;
+```
 
-Scenario B: The Birthright Noise Reduction Filter
-The Problem: The campaign is flooding managers with low-level, zero-risk entitlements like "Basic Badge Access", "All-Company Mailing List", and "Domain Users".The Solution: Evaluate the certifiable object (the specific entitlement or role). If it matches your hardcoded list of birthright access, exclude it.
+### Scenario B: The Birthright Noise Reduction Filter
+**The Problem:** The campaign is flooding managers with low-level, zero-risk entitlements like "Basic Badge Access", "All-Company Mailing List", and "Domain Users".The **The Solution:** Evaluate the certifiable object (the specific entitlement or role). If it matches your hardcoded list of birthright access, exclude it.
 
+```java
 import sailpoint.object.Identity;
 import sailpoint.object.Bundle;
 import sailpoint.object.ManagedAttribute;
