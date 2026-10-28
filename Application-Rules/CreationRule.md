@@ -14,10 +14,11 @@ When asked about the Creation Rule, your answer must revolve around Authoritativ
 
 ### Scenario A: Calculating Corporate Email & Lifecycle State
 
-The Problem: The HR flat file provides First Name and Last Name, but downstream applications (like Active Directory) require a standardized Corporate Email and an active Lifecycle State to begin birthright provisioning.
+**The Problem:** The HR flat file provides First Name and Last Name, but downstream applications (like Active Directory) require a standardized Corporate Email and an active Lifecycle State to begin birthright provisioning.
 
-The Solution: Intercept the new identity object, format the first and last names into an email string, check for uniqueness, and set the default Lifecycle State.
+**The Solution:** Intercept the new identity object, format the first and last names into an email string, check for uniqueness, and set the default Lifecycle State.
 
+```java
 import sailpoint.object.Identity;
 import sailpoint.object.QueryOptions;
 import sailpoint.object.Filter;
