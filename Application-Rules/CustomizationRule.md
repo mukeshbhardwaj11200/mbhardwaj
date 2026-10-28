@@ -14,10 +14,11 @@ When discussing this rule, focus on Data Sanitization and Downstream Consistency
 
 ### Scenario A: Standardizing Phone Numbers and Casing
 
-The Problem: A legacy application sends department names as "hUmaN reSources" and phone numbers as (555) 123-4567 or 555.123.4567. This inconsistency breaks role-assignment rules that look for exact department matches.
+**The Problem:** A legacy application sends department names as "hUmaN reSources" and phone numbers as (555) 123-4567 or 555.123.4567. This inconsistency breaks role-assignment rules that look for exact department matches.
 
-The Solution: Intercept the object (the ResourceObject), clean the phone number to a numeric-only string, and convert the department name to Proper Case.
+**The Solution:** Intercept the object (the ResourceObject), clean the phone number to a numeric-only string, and convert the department name to Proper Case.
 
+```java
 import sailpoint.object.ResourceObject;
 
 // The rule receives 'object' (the ResourceObject containing the raw app data)
