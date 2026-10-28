@@ -12,6 +12,7 @@ In SailPoint IdentityIQ, the application rules shown in the configuration UI do 
 
 During an account aggregation task, data flows from the raw target system into IdentityIQ. The rules execute in a strict sequence to parse, clean, and link the data.
 
+```mermaid
 graph TD
     RawData[(Raw Target Data)] --> |1. Connector Reads Data| ConnectorRules
 
@@ -39,7 +40,7 @@ graph TD
     
     classDef rules fill:#0a4b78,stroke:#fff,stroke-width:2px,color:#fff;
     class BM,MM,MRO,SC,AC,CR,Create,MCR rules;
-
+```
 
 ## Execution Order (Aggregation):
 
@@ -69,6 +70,7 @@ graph TD
 
 When a user requests access, or an automated birthright role is assigned, IdentityIQ builds a ProvisioningPlan and sends it to the target application.
 
+```mermaid
 graph TD
     Trigger((Access Request / Lifecycle Event)) --> |Generates| Plan[Provisioning Plan]
 
@@ -94,7 +96,7 @@ graph TD
     
     classDef rules fill:#0a4b78,stroke:#fff,stroke-width:2px,color:#fff;
     class BP,PR,AP rules;
-
+```
 
 Execution Order (Provisioning):
 
