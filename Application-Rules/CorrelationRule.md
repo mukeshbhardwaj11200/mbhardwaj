@@ -14,10 +14,11 @@ If an interviewer asks when you would use a Correlation Rule instead of the stan
 
 ### Scenario A: String Manipulation & Prefix Stripping
 
-The Problem: A legacy financial application stores usernames with a hardcoded prefix (e.g., FIN-10045), but the authoritative Identity cube only stores the numerical ID (10045). The standard UI cannot correlate these.
+**The Problem:** A legacy financial application stores usernames with a hardcoded prefix (e.g., FIN-10045), but the authoritative Identity cube only stores the numerical ID (10045). The standard UI cannot correlate these.
 
-The Solution: Intercept the account's username attribute, strip the FIN- prefix using standard Java string manipulation, and return a map containing the clean identity attribute to correlate against.
+**The Solution:** Intercept the account's username attribute, strip the FIN- prefix using standard Java string manipulation, and return a map containing the clean identity attribute to correlate against.
 
+```java
 import java.util.Map;
 import java.util.HashMap;
 
@@ -39,7 +40,7 @@ if (rawUsername != null && rawUsername.startsWith("FIN-")) {
 
 // If returning a map, SailPoint attempts to correlate using those key-value pairs
 return returnMap;
-
+```
 
 ### Scenario B: Multi-Attribute Fallback Logic
 
