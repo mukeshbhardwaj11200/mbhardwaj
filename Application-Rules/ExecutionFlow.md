@@ -4,9 +4,9 @@
 
 In SailPoint IdentityIQ, the application rules shown in the configuration UI do not all run at the same time. They are divided into two distinct pipelines:
 
-The Aggregation Pipeline (Read): Pulling data from the target application and building Identity Cubes.
+1. The Aggregation Pipeline (Read): Pulling data from the target application and building Identity Cubes.
 
-The Provisioning Pipeline (Write): Sending access changes from IdentityIQ out to the target application.
+2. The Provisioning Pipeline (Write): Sending access changes from IdentityIQ out to the target application.
 
 ## 2. The Aggregation Pipeline (Data Inbound)
 
