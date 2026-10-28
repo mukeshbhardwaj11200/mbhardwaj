@@ -45,25 +45,25 @@ graph TD
 
 ### Connector Rules: (Runs first, per row of data)
 
-Build Map: Takes a raw string/CSV row and turns it into a Java Map.
+1. Build Map: Takes a raw string/CSV row and turns it into a Java Map.
 
-MergeMaps: If the user has multiple rows (e.g., multiple groups), it merges them into a single Map.
+2. MergeMaps: If the user has multiple rows (e.g., multiple groups), it merges them into a single Map.
 
-Map to ResourceObject: Converts the Java Map into a SailPoint ResourceObject.
+3. Map to ResourceObject: Converts the Java Map into a SailPoint ResourceObject.
 
 ### Schema Rules:
 
-Schema Customization Rule: Modifies the raw ResourceObject (e.g., standardizing phone numbers) before IIQ's core engine touches it.
+1. Schema Customization Rule: Modifies the raw ResourceObject (e.g., standardizing phone numbers) before IIQ's core engine touches it.
 
-Aggregation Rules: (Identity Engine takes over)
+### Aggregation Rules: (Identity Engine takes over)
 
-App Customization Rule: Acts identically to the Schema Customization rule (just applied at the app level instead of the specific schema level).
+1. App Customization Rule: Acts identically to the Schema Customization rule (just applied at the app level instead of the specific schema level).
 
-Correlation Rule: Takes the clean ResourceObject and attempts to link it to an existing Identity Cube (e.g., matching EmployeeID).
+2. Correlation Rule: Takes the clean ResourceObject and attempts to link it to an existing Identity Cube (e.g., matching EmployeeID).
 
-Creation Rule: If Correlation fails, and the app is an Authoritative Source, this rule runs to initialize a brand new Identity Cube.
+3. Creation Rule: If Correlation fails, and the app is an Authoritative Source, this rule runs to initialize a brand new Identity Cube.
 
-Manager Correlation Rule: Finally, parses the manager string to link the account to the correct manager's Identity.
+4. Manager Correlation Rule: Finally, parses the manager string to link the account to the correct manager's Identity.
 
 ## 3. The Provisioning Pipeline (Data Outbound)
 
