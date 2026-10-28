@@ -43,10 +43,11 @@ return returnMap;
 
 ### Scenario B: Multi-Attribute Fallback Logic
 
-The Problem: An external contractor Active Directory domain does not store Employee IDs. Some accounts have an email address, while others only have a givenName and sn (First and Last name).
+**The Problem:** An external contractor Active Directory domain does not store Employee IDs. Some accounts have an email address, while others only have a givenName and sn (First and Last name).
 
-The Solution: Extract the available attributes from the account object. Attempt to match by Email first. If the email attribute is missing, write a custom query to find the Identity by First and Last Name.
+**The Solution:** Extract the available attributes from the account object. Attempt to match by Email first. If the email attribute is missing, write a custom query to find the Identity by First and Last Name.
 
+```java
 import sailpoint.object.Identity;
 import sailpoint.object.QueryOptions;
 import sailpoint.object.Filter;
