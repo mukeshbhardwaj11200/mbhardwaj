@@ -6,7 +6,7 @@ Rules and Transforms are the computation layers that sanitize, calculate, and tr
 
 ## Advanced Implementation Strategies
 
-1. Identity Security Cloud (ISC) Transforms:
+### 1. Identity Security Cloud (ISC) Transforms:
 
 1.1. Implementing complex, nested JSON transforms to calculate attributes without backend code.
 
@@ -14,7 +14,7 @@ Rules and Transforms are the computation layers that sanitize, calculate, and tr
 
 1.3. Creating Reference transforms to modularize logic (e.g., creating a central Calculate UPN transform that is referenced by multiple identity profiles).
 
-2. IdentityIQ (IIQ) Aggregation Rules:
+### 2. IdentityIQ (IIQ) Aggregation Rules:
 
 2.1. BuildMap Rule: Intercepting raw data rows before they become ResourceObjects. Used to map complex multi-valued strings from legacy databases into structured Java List objects.
 
