@@ -4,11 +4,11 @@ FieldValue Rule: Dynamic Form & Policy Calculation
 
 The FieldValue Rule executes when a Provisioning Policy or an LCM (Lifecycle Manager) Form is evaluated. Its job is to dynamically calculate and populate the default value of a field, removing the need for manual data entry and preventing human error during account creation.
 
-2. Architectural Context (The Interview Talking Track)
+2. Architectural Context & Use Case
 
-If asked about customizing provisioning policies, focus on Standardization and User Experience.
+When configuring target system provisioning (such as Active Directory), relying on manual data entry for critical attributes like `sAMAccountName` or `userPrincipalName` introduces a significant risk of typographical errors and naming convention violations. Manual input at the access request level degrades data integrity and often leads to downstream provisioning failures.
 
-"When configuring Active Directory provisioning, relying on a manager to manually type a user's sAMAccountName or userPrincipalName is a recipe for typos and naming convention violations. I use FieldValue rules attached to the AD Provisioning Policy to dynamically generate these attributes. The rule reads the user's first and last name from their Identity cube, strips out spaces, applies the corporate format, and ensures it's populated automatically before the account creation is submitted."
+To enforce standardization, Field Value Rules are integrated directly into the Application Provisioning Policy. These rules programmatically extract baseline attributes (such as first and last name) from the aggregated Identity Cube, sanitize the data (e.g., stripping spaces or special characters), and dynamically generate the required corporate format. This architectural pattern ensures that mandatory account attributes are automatically and accurately populated prior to the submission of the account creation request.
 
 3. Enterprise Scenarios & BeanShell Implementation
 
