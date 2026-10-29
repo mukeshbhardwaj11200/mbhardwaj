@@ -4,11 +4,11 @@ IdentityTrigger Rule: JML Automation Engine
 
 The IdentityTrigger Rule executes during the Identity Refresh background task. Its primary function is to compare a user's previous state to their current state to detect critical changes (like a termination or a department transfer). If it returns true, it triggers a Lifecycle Event workflow (Joiner, Mover, or Leaver) to automatically provision or deprovision access.
 
-2. Architectural Context (The Interview Talking Track)
+2. Architectural Context & Use Case
 
-When an interviewer asks how you automate Joiner/Mover/Leaver (JML) processes, this rule is the cornerstone of your answer.
+A mature Identity and Access Management (IAM) architecture relies on automated, event-driven Joiner/Mover/Leaver (JML) processes rather than manual, ticket-based provisioning. The Identity Trigger Rule is the foundational component used to facilitate this automation by continuously monitoring authoritative HR feeds for critical state changes.
 
-"A robust IAM system shouldn't rely on helpdesk tickets; it should be event-driven. I use IdentityTrigger rules to constantly monitor the authoritative HR feed. When the Identity Refresh task runs, my rule compares the previousIdentity cube with the newIdentity cube. If I detect that the lifecycleState has flipped from 'Active' to 'Terminated', the rule returns true, which instantly fires the Leaver workflow to disable all target application accounts and revoke access, ensuring zero day-1 security risks."
+During the Identity Refresh task, this rule programmatically compares the `previousIdentity` object against the `newIdentity` object. By evaluating specific attribute mutations—such as a `lifecycleState` transitioning from 'Active' to 'Terminated'—the rule dynamically returns a boolean true to instantly execute the corresponding Leaver workflow. This event-driven pattern ensures that all target application accounts are immediately disabled and access is revoked, eliminating Day-1 security risks and maintaining strict access compliance.
 
 3. Enterprise Scenarios & BeanShell Implementation
 
