@@ -4,11 +4,11 @@
 
 The Customization Rule (sometimes called a ResourceObject Customization Rule) executes during aggregation before the application data is processed by SailPoint's correlation or identity mapping engine. Its primary job is to clean, transform, or format messy data directly on the incoming ResourceObject.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-When discussing this rule, focus on Data Sanitization and Downstream Consistency.
+Target applications and endpoints frequently exhibit poor data hygiene, such as inconsistent phone number formatting or irregular casing in department names. If left unaddressed, this inconsistent data can pollute Identity Cubes and disrupt downstream Correlation Rules.
 
-"I rely on the Customization Rule to act as a data-scrubbing gateway. Often, target applications have terrible data hygiene—phone numbers are formatted in five different ways, or department names have random casing. Rather than letting that dirty data pollute the Identity cubes or break Correlation rules, I use the Customization Rule to intercept the ResourceObject, uppercase strings, strip special characters from phone numbers, and standardize dates. It ensures SailPoint only consumes clean data."
+The Customization Rule acts as a data-scrubbing gateway prior to aggregation. It is implemented to intercept the `ResourceObject` to programmatically standardize incoming data—such as uppercasing strings, stripping special characters from phone numbers, and normalizing date formats. This architectural pattern ensures that SailPoint only consumes and processes clean, standardized data during the aggregation pipeline.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
