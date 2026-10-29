@@ -4,11 +4,11 @@
 
 The Creation Rule executes only during the aggregation of an Authoritative Source (like Workday, SAP HR, or Oracle HCM). When SailPoint discovers a brand new employee in the HR feed, it creates a new Identity Cube. This rule intercepts that creation event to dynamically calculate, format, or initialize foundational Identity attributes before the cube is saved to the database.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-When asked about the Creation Rule, your answer must revolve around Authoritative Sources and Calculated Attributes.
+The Creation Rule is primarily implemented on Authoritative Sources (such as Workday or legacy HR databases). When a new hire record is ingested, the source data typically lacks IT-specific attributes, such as a corporate email address or a standardized lifecycle state, which the IAM system is expected to generate.
 
-"I use the Creation Rule exclusively on HR authoritative sources. When a new hire comes through Workday, HR usually doesn't provide a corporate email address or a standard lifecycle state—IT is expected to generate those. I use this rule to automatically calculate the user's corporate email (e.g., firstname.lastname@company.com), handle duplicate name collisions, and force the new Identity's lifecycle state to 'Pre-Hire' so downstream provisioning is triggered correctly."
+This rule is utilized to automatically calculate and assign these missing attributes during the initial Identity Cube creation. It programmatically generates the corporate email (e.g., `firstname.lastname@company.com`), executes logic to handle duplicate name collisions, and sets the initial Identity lifecycle state (e.g., 'Pre-Hire'). This ensures that the Identity is constructed with all mandatory attributes required to trigger downstream provisioning workflows correctly.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
