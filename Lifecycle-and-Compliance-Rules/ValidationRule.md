@@ -14,9 +14,9 @@ Validation Rules are implemented at the form-field level to programmatically enf
 
 ### Scenario A: Enforcing Password Complexity on a Form
 
-** The Problem: ** An "Update Password" LCM form allows users to type a new password, but Active Directory will reject it later in the process if it isn't complex enough, causing workflow failures.
+**The Problem:** An "Update Password" LCM form allows users to type a new password, but Active Directory will reject it later in the process if it isn't complex enough, causing workflow failures.
 
-** The Solution: ** Validate the value string using standard Java Regular Expressions before the form is even submitted.
+**The Solution:** Validate the value string using standard Java Regular Expressions before the form is even submitted.
 
 ```java
 import sailpoint.tools.Message;
