@@ -3,10 +3,11 @@
 ## 1. Business Objective
 The **Certification Exclusion Rule** executes at the very beginning of the campaign generation process. Its primary function is to evaluate raw identities, roles, and entitlements before the campaign is built, and permanently filter out specific items so they never appear on a reviewer's dashboard. 
 
-## 2. Architectural Context (The Interview Talking Track)
-If an interviewer asks you why and how you use this rule, your answer should focus on **Reviewer Fatigue** and **Audit Scope**. 
+## 2. Architectural Context & Use Case
 
-*"In enterprise environments, managers suffer from severe click-fatigue if we force them to review every single piece of access. As a senior developer, I use the Certification Exclusion Rule to surgically remove 'noise' from the campaign. I typically filter out two things: First, inactive identities and non-human service accounts that are governed by separate IAM lifecycle policies. Second, I filter out 'Birthright' access—like basic Active Directory 'Domain Users' groups—because every employee has it, it carries zero risk, and forcing a manager to certify it degrades the value of the review."*
+In enterprise access governance, certification campaigns frequently suffer from "reviewer fatigue" when managers are forced to attest to every granular entitlement. Including ubiquitous, low-risk, or irrelevant access in a campaign degrades the overall efficacy of the audit and obscures meaningful security risks.
+
+The Certification Exclusion Rule is implemented to programmatically refine the audit scope and surgically remove this "noise" prior to campaign generation. This architectural pattern is typically used to filter out two specific categories: first, inactive identities and non-human service accounts (which are governed by separate automated IAM lifecycle policies); and second, baseline "Birthright" access (such as the standard Active Directory 'Domain Users' group). By automatically excluding zero-risk and out-of-scope items, this rule ensures that certifiers are only presented with high-value, risk-bearing access reviews.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
