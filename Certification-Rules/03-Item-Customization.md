@@ -4,11 +4,11 @@
 
 The Certification Item Customization Rule executes during the final stages of campaign generation, right before the items are rendered on the reviewer's dashboard. Its primary function is to alter the visual display of the certification line items. It does not change the underlying data in the database; it only changes what the reviewer sees on their screen.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-When an interviewer asks about this rule, your focus should be on User Experience (UX) and Preventing Rubber-Stamping.
+In enterprise access governance, a significant risk to compliance is "rubber-stamping"—where certifiers blindly approve access due to a lack of technical context. For example, a standard Active Directory group formatted as `CN=GL_PRD_RW,OU=Groups,DC=Corp` provides no meaningful context to non-technical business approvers.
 
-"The biggest threat to a compliance campaign is 'rubber-stamping'—when a manager blindly approves access because they don't understand what they are looking at. An Active Directory group named CN=GL_PRD_RW,OU=Groups,DC=Corp means nothing to a VP of Finance. As an IAM engineer, I use the Item Customization Rule to intercept that cryptic string and inject a plain-English 'Business Justification' (e.g., 'General Ledger Production - Read/Write') directly into the UI. I also use it to inject HTML/CSS warnings to highlight high-risk administrative access in red, forcing the manager to pay attention."
+The Item Customization Rule is implemented to programmatically intercept these cryptic entitlement strings and enrich the certification UI. It translates technical attributes into plain-English business descriptions (e.g., "General Ledger Production - Read/Write"). Additionally, this rule is utilized to inject HTML/CSS formatting into the UI to visually highlight high-risk or administrative access, ensuring certifiers maintain strict scrutiny over privileged entitlements.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
