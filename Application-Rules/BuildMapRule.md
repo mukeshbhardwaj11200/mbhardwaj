@@ -4,11 +4,11 @@
 
 The Build Map Rule is specific to Delimited File (CSV) and JDBC connectors. It executes during aggregation, exactly at the moment a line of data is read from the file or database, but before SailPoint creates the ResourceObject. Its function is to map the raw string array into a usable Map of key-value pairs, allowing for on-the-fly data transformation.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-If an interviewer asks how you handle legacy CSV feeds with terrible formatting, this is your answer.
+When integrating with legacy HR flat files or legacy databases, the raw data structure frequently lacks the normalization required by SailPoint. For instance, a source CSV might provide separate 'First Name' and 'Last Name' columns without a required 'Full Name' attribute, or it might utilize cryptic status codes (e.g., 'A' and 'T').
 
-"When dealing with legacy HR flat files or legacy databases, the raw data structure rarely matches what SailPoint needs. For instance, a CSV might have 'First Name' and 'Last Name' columns, but lack a 'Full Name' column. Or a status column might use cryptic codes like 'A' and 'T'. I use the Build Map Rule to parse the raw record, merge columns, translate cryptic codes into readable values, and build a clean Map. It's the first line of defense for data integrity before SailPoint even attempts to process the account."
+The Build Map Rule serves as the initial data transformation layer. It is implemented to parse the raw record, manipulate and merge attributes, translate legacy codes into standardized values, and construct a clean, normalized Map object. This architectural pattern acts as the primary line of defense for data integrity, ensuring that only sanitized, structured data enters the IdentityIQ processing pipeline.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
