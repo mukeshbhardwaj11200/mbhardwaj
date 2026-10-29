@@ -1,23 +1,24 @@
-IdentityTrigger Rule: JML Automation Engine
+# IdentityTrigger Rule: JML Automation Engine
 
-1. Business Objective
+## 1. Business Objective
 
 The IdentityTrigger Rule executes during the Identity Refresh background task. Its primary function is to compare a user's previous state to their current state to detect critical changes (like a termination or a department transfer). If it returns true, it triggers a Lifecycle Event workflow (Joiner, Mover, or Leaver) to automatically provision or deprovision access.
 
-2. Architectural Context & Use Case
+## 2. Architectural Context & Use Case
 
 A mature Identity and Access Management (IAM) architecture relies on automated, event-driven Joiner/Mover/Leaver (JML) processes rather than manual, ticket-based provisioning. The Identity Trigger Rule is the foundational component used to facilitate this automation by continuously monitoring authoritative HR feeds for critical state changes.
 
 During the Identity Refresh task, this rule programmatically compares the `previousIdentity` object against the `newIdentity` object. By evaluating specific attribute mutations—such as a `lifecycleState` transitioning from 'Active' to 'Terminated'—the rule dynamically returns a boolean true to instantly execute the corresponding Leaver workflow. This event-driven pattern ensures that all target application accounts are immediately disabled and access is revoked, eliminating Day-1 security risks and maintaining strict access compliance.
 
-3. Enterprise Scenarios & BeanShell Implementation
+## 3. Enterprise Scenarios & BeanShell Implementation
 
-Scenario A: The Automated Leaver Event
+### Scenario A: The Automated Leaver Event
 
-The Problem: The company needs all IT access disabled within 2 hours of a user being marked as terminated in Workday.
+**The Problem:** The company needs all IT access disabled within 2 hours of a user being marked as terminated in Workday.
 
-The Solution: Intercept the previousIdentity and newIdentity, extract the lifecycleState attribute from both, and check if it changed to "Terminated".
+**The Solution:** Intercept the previousIdentity and newIdentity, extract the lifecycleState attribute from both, and check if it changed to "Terminated".
 
+```java
 import sailpoint.object.Identity;
 
 // The rule receives 'previousIdentity' (state before refresh) 
