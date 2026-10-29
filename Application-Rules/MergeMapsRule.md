@@ -4,11 +4,11 @@
 
 The MergeMaps Rule is a highly specialized rule used primarily in Delimited File connectors. It is required when a target system provides entitlement data using multiple rows per user (e.g., User A is listed three times because they have three different groups). Its function is to combine the maps of these multiple rows into a single ResourceObject containing a List of multi-valued attributes.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-Interviewers love this question because it proves you have dealt with complex, poorly formatted data dumps.
+A common architectural challenge during flat-file and database integrations is handling multi-valued attributes distributed across multiple rows. For example, if a database export outputs one row per entitlement, SailPoint's default behavior is to overwrite the user's account data upon reading each subsequent row for the same identity.
 
-"A common challenge with flat-file integrations is multi-valued attributes. If a database dump outputs one row per entitlement, SailPoint will normally overwrite the user's account data every time it reads a new row for the same user. To solve this, I configure the connector's index column, and then write a MergeMaps Rule. When the connector detects a duplicate account ID, my rule takes the new row's 'Group' attribute and appends it to a Java List in the existing mapped record, ensuring the final ResourceObject contains all entitlements accurately."
+To resolve this, the connector's index column is configured in conjunction with a Merge Maps Rule. When the aggregation process detects a duplicate account ID, this rule intercepts the operation, extracts the new row's entitlement attribute (such as a 'Group' or 'Role'), and dynamically appends it to a Java List within the existing mapped record. This architectural pattern ensures that the final aggregated `ResourceObject` accurately retains all multi-valued entitlements without data loss.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
