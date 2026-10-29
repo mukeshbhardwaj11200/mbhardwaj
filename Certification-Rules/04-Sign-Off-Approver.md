@@ -4,11 +4,11 @@
 
 The Certification Sign-Off Approver Rule executes at the exact moment the primary reviewer clicks the "Sign Off" button. Its function is to evaluate the decisions the reviewer just made and determine if the campaign can be officially closed, or if it must be routed to a secondary executive or administrative group for a multi-level approval chain.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-When an interviewer asks about this rule, your answer should demonstrate a deep understanding of Compliance, Segregation of Duties (SoD), and Risk Mitigation.
+In highly regulated sectors (such as finance and ratings), a single line-manager's approval is frequently insufficient for governing access to sensitive data. For example, if a manager approves an entitlement for a SOX-critical financial database, strict audit compliance and Segregation of Duties (SoD) mandate a secondary sign-off.
 
-"In highly regulated sectors like finance and ratings, a single line-manager's approval is necessary, but it is not sufficient for sensitive data. If a manager approves an employee's access to a SOX-critical financial database, audit compliance requires a secondary sign-off. I use the Sign-Off Approver Rule to intercept the campaign upon submission, scan the manager's decisions, and if any 'High Risk' items were approved, I dynamically route the campaign to the CISO or Risk Management team for a counter-signature before provisioning occurs."
+The Sign-Off Approver Rule is implemented to enforce these multi-tiered governance workflows. Upon the submission of a certification campaign, this rule intercepts the process to programmatically evaluate the certifier's decisions. If any entitlements flagged as "High Risk" were approved, the rule dynamically routes the campaign to the appropriate oversight entity (such as the CISO or Risk Management team) for a mandatory counter-signature. This architectural pattern ensures robust risk mitigation, strict SoD adherence, and compliance with complex regulatory frameworks before any downstream provisioning is finalized.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
