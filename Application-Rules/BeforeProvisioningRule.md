@@ -4,11 +4,11 @@
 
 The Before Provisioning Rule executes after SailPoint has compiled the ProvisioningPlan but right before it is dispatched to the target application's connector. Its primary function is to intercept the plan to enrich it with missing data (like default passwords or calculated IDs), validate operations, or cancel unauthorized requests.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-When asked about provisioning lifecycles, this rule is your golden ticket to demonstrating enterprise IAM experience.
+While IdentityIQ's native role model is robust, it often requires application-specific context during account creation. For example, when SailPoint creates an Active Directory account, it does not natively generate a complex temporary password or append specific target-level birthright groups.
 
-"IdentityIQ's native role model is great, but it often lacks application-specific context during account creation. For example, when SailPoint creates an Active Directory account, it doesn't natively know how to generate a complex temporary password, or it might be missing a required birthright group. I use the Before Provisioning Rule to intercept 'Create' operations, dynamically generate attributes like userPrincipalName or temporary passwords, and inject them directly into the Provisioning Plan before it hits the Active Directory connector. This ensures the account creation never fails due to missing mandatory attributes."
+This Before Provisioning Rule is implemented to intercept 'Create' operations, dynamically calculate missing attributes (such as `userPrincipalName` or temporary passwords), and inject them directly into the Provisioning Plan before it reaches the Active Directory connector. This architectural pattern ensures that account creation operations do not fail due to missing mandatory target system attributes.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
