@@ -4,11 +4,11 @@
 
 The Manager Correlation Rule executes during aggregation to resolve the organizational hierarchy. Its function is to take the raw "manager" data provided by the application account (which is often messy or formatted as a Distinguished Name) and correctly link it to the actual Manager's Identity cube in SailPoint.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-If an interviewer asks about this, focus on Active Directory complexities and Maintaining HR Hierarchy.
+In complex target systems such as Active Directory, the 'manager' attribute is rarely provided as a simple Employee ID. Instead, it is typically formatted as a full Distinguished Name (DN), such as `CN=John Doe,OU=Users,DC=Corp`. SailPoint IdentityIQ cannot natively resolve this complex DN to the corresponding Manager Identity Cube without programmatic intervention.
 
-"In Active Directory, the 'manager' attribute isn't a simple Employee ID; it is a full Distinguished Name (DN) like 'CN=John Doe,OU=Users,DC=Corp'. SailPoint cannot natively match a DN to a manager's Identity cube without help. I write Manager Correlation Rules to parse that complex DN, extract the unique identifier (like the Common Name or UID), and use it to look up the correct Manager Identity so the reporting hierarchy is maintained accurately in SailPoint."
+A Manager Correlation Rule is implemented to parse these complex DN strings, extract the unique identifier (such as the Common Name or UID), and query the system to correlate the exact Manager Identity. This architectural pattern is critical for ensuring that the organizational reporting hierarchy is accurately ingested, maintained, and represented within SailPoint.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
