@@ -6,11 +6,11 @@ The Certification Pre-Delegation Rule executes during the generation phase of an
 
 Its primary function is to programmatically intercept the certification entities (the users being reviewed) and automatically redirect them to a different reviewer before the campaign goes live.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-If an interviewer asks you why and how you use this rule, your answer should focus on Exception Handling and Regulatory Routing.
+Standard access certifications typically rely on a rigid organizational hierarchy, which often fails to accommodate enterprise exceptions. For instance, if a certification campaign targets a team that includes external contractors, or if the designated certifier is on unexpected leave, a standard campaign may violate governance policies by assigning the review to an incorrect identity or stalling in an inactive queue.
 
-"Standard certifications rely on a rigid HR hierarchy, but enterprise organizations frequently have exceptions. If a manager owns a team that includes external contractors, or if the manager themselves goes on unexpected medical leave, a standard campaign will either violate policy by sending the review to the wrong person, or stall out in an inactive inbox. I use the Pre-Delegation rule to intercept the campaign generation, check the employee type or the certifier's status, and dynamically route those specific items to the Vendor Management Office or an Escalation Admin."
+The Pre-Delegation Rule is implemented to intercept campaign generation and enforce dynamic exception handling and regulatory routing. By programmatically evaluating the target's employee type or the certifier's active status, this rule dynamically re-routes specific certification items to the appropriate governance entity (such as the Vendor Management Office or a designated Escalation Administrator). This architectural pattern ensures continuous compliance, enforces strict Segregation of Duties (SOD), and prevents certification bottlenecks.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
