@@ -4,11 +4,11 @@ Advanced Policy Rule: Complex Segregation of Duties (SoD)
 
 The Advanced Policy Rule executes during an Identity Refresh or Policy Check task. While standard SoD policies in the UI can easily check if a user has "Role A" and "Role B", the Advanced Policy Rule is required when the toxic combination involves complex data logic—such as evaluating cross-application entitlements, specific account statuses, or Identity attributes.
 
-2. Architectural Context (The Interview Talking Track)
+2. Architectural Context & Use Case
 
-When discussing Compliance and Audit, this is your most powerful talking point.
+Basic Segregation of Duties (SoD) checks—such as preventing a user from simultaneously holding conflicting financial roles—are easily handled by native UI policies. However, enterprise "toxic combinations" frequently involve complex, cross-application variables. For example, strict audit compliance may dictate that an identity cannot hold a sensitive SAP Finance role *if* their Active Directory account belongs to a Vendor group *and* their HR record classifies them as a Contractor.
 
-"Basic Segregation of Duties (SoD) is easy—don't let someone be an AP Clerk and an AR Clerk. But enterprise toxic combinations are rarely that simple. A real audit finding might be: 'A user cannot have the SAP Finance role IF their Active Directory account belongs to the Vendor group AND they are marked as a Contractor in HR.' The standard UI cannot build that logic. I write Advanced Policy Rules to programmatically scan the Identity cube, evaluate all those cross-application variables at once, and generate a PolicyViolation object if the toxic combination is found."
+Standard UI-based policy builders lack the capability to evaluate this level of multi-dimensional conditional logic. An Advanced Policy Rule is implemented to programmatically scan the aggregated Identity Cube and evaluate these cross-application attributes and entitlements simultaneously. If a restricted combination is detected, the rule dynamically generates a `PolicyViolation` object. This architectural pattern ensures robust, automated enforcement of complex regulatory constraints and advanced SoD requirements.
 
 3. Enterprise Scenarios & BeanShell Implementation
 
