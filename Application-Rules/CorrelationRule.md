@@ -4,11 +4,11 @@
 
 The Correlation Rule executes during account aggregation. Its primary function is to link a newly discovered application account to an existing Identity cube when the standard UI-based attribute mapping (e.g., employeeNumber == employeeId) is insufficient due to messy, missing, or complex data.
 
-## 2. Architectural Context (The Interview Talking Track)
+## 2. Architectural Context & Use Case
 
-If an interviewer asks when you would use a Correlation Rule instead of the standard UI mapping, your answer should focus on Data Quality and Fallback Logic.
+While standard UI correlation mapping suffices for systems with clean, 1:1 matching attributes (such as an exact Employee ID), legacy systems or external directories frequently contain non-standard data. For example, accounts may have hardcoded prefixes on their IDs or only provide an email address for correlation.
 
-"In a perfect world, every application account has an exact Employee ID that matches HR. In reality, legacy systems or external directories often have messy data—like IDs with hardcoded prefixes, or accounts that only have an email address. As a senior developer, I use the Correlation Rule to execute multi-step fallback logic. I first try to strip prefixes to match by ID; if that fails, I query the database to match by Email. This prevents the system from creating duplicate, orphaned Identity cubes."
+In these scenarios, a custom Correlation Rule is implemented to execute multi-step fallback logic. The rule programmatically sanitizes data (e.g., stripping prefixes to attempt an ID match) and cascades to secondary attributes (e.g., querying by Email) if the primary match fails. This architectural pattern ensures accurate identity aggregation and prevents the creation of duplicate, orphaned Identity Cubes within the system.
 
 ## 3. Enterprise Scenarios & BeanShell Implementation
 
